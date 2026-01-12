@@ -42,6 +42,7 @@ export const useAnimalBehaviors = () => {
       let newZ = frog.z
       let newY = frog.y
       let newState = frog.state
+      let newDirection = frog.direction
 
       if (distance > 0.08) {
         // Move toward target
@@ -51,6 +52,9 @@ export const useAnimalBehaviors = () => {
         const progress = 1 - (distance / 2) // 0 at start, 1 at end
         newY = Math.sin(progress * Math.PI) * 0.08
         newState = 'jumping'
+        if (Math.abs(dx) > 0.02) {
+          newDirection = dx > 0 ? 1 : -1
+        }
       } else {
         // Arrived - settle down smoothly
         newY = frog.y * 0.85
@@ -63,6 +67,7 @@ export const useAnimalBehaviors = () => {
         z: newZ,
         y: newY,
         state: newState,
+        direction: newDirection,
       })
     })
 

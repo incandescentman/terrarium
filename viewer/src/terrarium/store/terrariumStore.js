@@ -14,7 +14,8 @@ export const useTerrariumStore = create((set, get) => ({
       type: 'redEyed',
       eyeOpen: true,
       breathePhase: 0,
-      state: 'idle'
+      state: 'idle',
+      direction: 1,
     },
     {
       id: 2,
@@ -26,7 +27,8 @@ export const useTerrariumStore = create((set, get) => ({
       type: 'poisonDart',
       eyeOpen: true,
       breathePhase: Math.PI,
-      state: 'idle'
+      state: 'idle',
+      direction: -1,
     },
     {
       id: 3,
@@ -38,7 +40,8 @@ export const useTerrariumStore = create((set, get) => ({
       type: 'greenTree',
       eyeOpen: true,
       breathePhase: Math.PI * 0.6,
-      state: 'idle'
+      state: 'idle',
+      direction: 1,
     },
   ],
 
