@@ -1,0 +1,103 @@
+#+title: Terrarium - 3D Animated Ecosystem
+#+author: Jay Dixit
+
+* Overview
+
+A 3D animated terrarium visualization built with React and Three.js. Features stylized Pixar-style frogs and turtles in a tropical ecosystem with plants, water, rocks, and atmospheric effects.
+
+* Features
+
+- *3 Frog Species*: Red-eyed tree frog, poison dart frog, green tree frog
+- *2 Turtles*: With walking animation and head retraction
+- *Environment*: Water pool with ripples, moss patches, rocks, branch
+- *Plants*: Monstera leaves, ferns, bromeliads with gentle swaying
+- *Effects*: Depth of field, bloom, vignette, cinematic color grading
+- *Behaviors*: Breathing, blinking, hopping, all ported from original SVG version
+
+* Tech Stack
+
+- React 19
+- Three.js via @react-three/fiber
+- @react-three/drei (helpers)
+- @react-three/postprocessing (effects)
+- Zustand (state management)
+- Vite (build tool)
+- Tailwind CSS
+
+* Running Locally
+
+#+begin_src bash
+cd /Users/jay/Dropbox/github/terrarium/viewer
+npm install
+npm run dev
+#+end_src
+
+Then open: http://localhost:5173
+
+* Building for Production
+
+#+begin_src bash
+npm run build
+#+end_src
+
+Output goes to =viewer/dist/=
+
+* Deploying to the Web
+
+** Option 1: Vercel (Recommended)
+#+begin_src bash
+cd viewer
+npx vercel
+#+end_src
+
+** Option 2: Netlify
+1. Push to GitHub
+2. Connect repo to Netlify
+3. Set build command: =npm run build=
+4. Set publish directory: =dist=
+
+** Option 3: Static Hosting
+Run =npm run build= and upload the =dist= folder to any static host.
+
+* Project Structure
+
+#+begin_example
+terrarium/
+├── README.org
+├── terrarium.jsx          # Original SVG version (reference)
+└── viewer/                # Three.js React app
+    ├── package.json
+    ├── src/
+    │   ├── App.jsx
+    │   ├── terrarium/
+    │   │   ├── TerrariumScene.jsx    # Main canvas + post-processing
+    │   │   ├── TerrariumContent.jsx  # Scene orchestrator
+    │   │   ├── store/
+    │   │   │   └── terrariumStore.js # Zustand state
+    │   │   ├── hooks/
+    │   │   │   └── useAnimalBehaviors.js
+    │   │   ├── components/
+    │   │   │   ├── animals/
+    │   │   │   │   ├── Frog.jsx
+    │   │   │   │   └── Turtle.jsx
+    │   │   │   ├── environment/
+    │   │   │   ├── plants/
+    │   │   │   └── effects/
+    │   │   └── materials/
+    │   │       └── FrogSkinMaterial.js
+    └── dist/              # Production build output
+#+end_example
+
+* Controls
+
+- *Orbit*: Click and drag to rotate view
+- *Zoom*: Scroll wheel
+- Camera is constrained to prevent viewing from below
+
+* Future Improvements
+
+- [ ] Replace procedural geometry with GLTF models from Sketchfab
+- [ ] Add proper firefly particle shader (currently disabled)
+- [ ] Water caustics and better reflections
+- [ ] Sound effects (ambient forest, frog calls)
+- [ ] Day/night cycle
